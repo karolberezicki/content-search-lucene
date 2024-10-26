@@ -26,20 +26,20 @@ namespace EPiServer.Search.Internal
 
         public virtual IEnumerable<IndexRequestQueueItem> Get(string namedIndexingService, int maxCount)
         {
-            if (Store() != null)
+            if (Store() == null)
             {
-                var queueItems =
-                (from queueItem in Store().Items<IndexRequestQueueItem>()
-                 where queueItem.NamedIndexingService == namedIndexingService
-                 orderby queueItem.Timestamp ascending
-                 select queueItem).Take(maxCount);
+                return [];
+            }
 
-                return queueItems.ToList();
-            }
-            else
-            {
-                return null;
-            }
+            var queueItems =
+                Store()
+                    .Items<IndexRequestQueueItem>()
+                    .Where(queueItem => queueItem.NamedIndexingService == namedIndexingService)
+                    .OrderBy(queueItem => queueItem.Timestamp)
+                    .Take(maxCount);
+
+            return queueItems;
+
         }
 
         public virtual void Remove(IEnumerable<IndexRequestQueueItem> items)

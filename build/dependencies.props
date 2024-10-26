@@ -1,8 +1,8 @@
 <Project>
   <PropertyGroup>
-    <CmsVersion>[12.17.1,13)</CmsVersion>
-    <CmsCoreVersion>[12.13.1,13)</CmsCoreVersion>
-    <CmsUiCoreVersion>[12.17.1,13)</CmsUiCoreVersion>
+    <CmsVersion>[12.31.2,13)</CmsVersion>
+    <CmsCoreVersion>[12.21.8,13)</CmsCoreVersion>
+    <CmsUiCoreVersion>[12.31.2,13)</CmsUiCoreVersion>
     <Lucene>4.8.0-beta00015</Lucene>
   </PropertyGroup>
   <ItemGroup Condition = "'$(TargetFramework)' != 'net461'">
